@@ -7,17 +7,14 @@ import { ThemedView } from "@/components/ThemedView";
 import { enableSecureView } from "react-native-prevent-screenshot-ios-android";
 import {
   addScreenshotListener,
-  requestPermissionsAsync,
-  Subscription,
-  usePreventScreenCapture,
+  preventScreenCaptureAsync,
 } from "expo-screen-capture";
 import { useEffect } from "react";
 
 export default function HomeScreen() {
-  usePreventScreenCapture();
-
   useEffect(() => {
     if (Platform.OS == "ios") {
+      preventScreenCaptureAsync();
       enableSecureView(); //This function blocks the Screen share/Recording and taking screenshot for iOS devices.
     }
 
